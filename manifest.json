@@ -1,0 +1,20 @@
+{
+    "manifest_version": 2,
+    "name": "manaba2kdb",
+    "version": "1.0.0",
+  
+    "description": "manabaの科目番号をKdBのシラバスページへリンクします",
+    "icons": {
+        "16": "assets/icon16.png",
+        "48": "assets/icon48.png",
+        "128": "assets/icon128.png"
+      },
+
+    "author": "smasato",
+    "content_scripts": [
+      {
+        "matches": ["https://manaba.tsukuba.ac.jp/ct/*"],
+        "js": ["src/script.js"]
+      }
+    ]
+}
