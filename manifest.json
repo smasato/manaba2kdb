@@ -13,7 +13,7 @@
     "author": "smasato",
     "content_scripts": [
       {
-        "matches": ["https://manaba.tsukuba.ac.jp/ct/*"],
+        "matches": ["https://manaba.tsukuba.ac.jp/ct/course_*"],
         "js": ["src/script.js"]
       }
     ]
