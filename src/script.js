@@ -25,17 +25,13 @@ const isValidCourseCode = (courseCode) => {
 const replaceCourseCode = (element, courseCode, year) => {
     const url = `https://kdb.tsukuba.ac.jp/syllabi/${year}/${courseCode}/jpn/`
     aTag = `<a href="${url}" target="_blank">` + courseCode + "</a>"
-    element.innerHTML = aTag;
+    element.innerHTML = aTag
 }
 
-    ; (async () => {
-        const element = getCourseCodeElement()
-        const courseCode = getCourseCode(element)
-        const year = getYear()
+const element = getCourseCodeElement()
+const courseCode = getCourseCode(element)
+const year = getYear()
 
-        if (courseCode===null) {
-            return;
-        }
-
-        replaceCourseCode(element, courseCode, year)
-    })()
+if (courseCode !== null) {
+    replaceCourseCode(element, courseCode, year)
+}

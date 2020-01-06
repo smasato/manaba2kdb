@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "manaba2kdb",
-    "version": "1.0.2",
+    "version": "1.0.3",
   
     "description": "Change the course number of manaba (for University of Tsukuba) to link to the KdB syllabus page.",
     "icons": {
