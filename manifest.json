@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "manaba2kdb",
-    "version": "1.0.3",
+    "version": "1.0.4",
   
     "description": "Change the course number of manaba (for University of Tsukuba) to link to the KdB syllabus page.",
     "icons": {
@@ -13,7 +13,7 @@
     "author": "smasato",
     "content_scripts": [
       {
-        "matches": ["https://manaba.tsukuba.ac.jp/ct/course_*"],
+        "matches": ["https://manaba.tsukuba.ac.jp/ct/course_*", "https://manaba.tsukuba.ac.jp/ct/page_*"],
         "js": ["src/script.js"],
         "run_at": "document_end"
       }
