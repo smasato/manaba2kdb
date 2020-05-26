@@ -23,7 +23,7 @@ const isValidCourseCode = (courseCode) => {
 }
 
 const replaceCourseCode = (element, courseCode, year) => {
-    const url = `https://kdb.tsukuba.ac.jp/syllabi/${year}/${courseCode}/jpn/`
+    const url = `https://kdb.tsukuba.ac.jp/syllabi/${year}/${courseCode}/jpn/0/`
     aTag = `<a href="${url}" target="_blank">` + courseCode + "</a>"
     element.innerHTML = aTag
 }
