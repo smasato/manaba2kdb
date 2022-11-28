@@ -1,37 +1,28 @@
-const getCourseCodeElement = () => {
-    return document.getElementsByClassName('coursecode')[0]
+const syllabiURL = (courseCode, year) =>
+  `https://kdb.tsukuba.ac.jp/syllabi/${year}/${courseCode}/jpn`
+
+const getCourseCode = (element) => element.innerText
+const getYear = (element) => element.innerText.split(" ")[0]
+
+const isValidCourseCode = (courseCode) =>
+  /[A-Z0-9]{7,}/.test(courseCode)
+
+const replaceCourseCode = (element, courseCode, year) =>
+  (element.innerHTML = `<a href="${syllabiURL(
+    courseCode, year
+  )}" target="_blank">${courseCode}</a>`)
+
+const main = () => {
+    const courseCodeElement = document.querySelector(".coursecode")
+    const courseDataInfoElement =
+      document.querySelector(".coursedatainfo")
+    if (!courseCodeElement || !courseDataInfoElement) return
+
+  const courseCode = getCourseCode(courseCodeElement)
+  const year = getYear(courseDataInfoElement)
+  if (!isValidCourseCode(courseCode)) return
+
+  replaceCourseCode(courseCodeElement, courseCode, year)
 }
 
-const getCourseCode = (element) => {
-    let courseCode
-    if (element) {
-        courseCode = element.innerText
-    }
-
-    if (!isValidCourseCode(courseCode)) {
-        return null
-    }
-    return courseCode
-}
-
-const getYear = () => {
-    return document.getElementsByClassName('coursedata-info')[0].innerText.split(' ')[0]
-}
-
-const isValidCourseCode = (courseCode) => {
-    return /[A-Z0-9]{7,}/.test(courseCode)
-}
-
-const replaceCourseCode = (element, courseCode, year) => {
-    const url = `https://kdb.tsukuba.ac.jp/syllabi/${year}/${courseCode}/jpn`
-    aTag = `<a href="${url}" target="_blank">` + courseCode + "</a>"
-    element.innerHTML = aTag
-}
-
-const element = getCourseCodeElement()
-const courseCode = getCourseCode(element)
-const year = getYear()
-
-if (courseCode !== null) {
-    replaceCourseCode(element, courseCode, year)
-}
+main()
