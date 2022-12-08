@@ -1,37 +1,36 @@
-const getCourseCodeElement = () => {
-    return document.getElementsByClassName('coursecode')[0]
+const syllabusURL = (courseCode, year) =>
+  `https://kdb.tsukuba.ac.jp/syllabi/${year}/${courseCode}/jpn`
+
+const getCourseCode = (element) => element.innerText
+const getYear = (element) => element.innerText.split(" ").shift()
+
+const syllabiAnchorElement = (courseCode, year) => {
+  const element = document.createElement("a")
+  element.setAttribute("href", syllabusURL(courseCode, year))
+  element.setAttribute("target", "_blank")
+  element.setAttribute("rel", "external")
+  element.innerText = courseCode
+
+  return element
 }
 
-const getCourseCode = (element) => {
-    let courseCode
-    if (element) {
-        courseCode = element.innerText
-    }
+const isValidCourseCode = (courseCode) =>
+  /[A-Z0-9]{7,}/.test(courseCode)
 
-    if (!isValidCourseCode(courseCode)) {
-        return null
-    }
-    return courseCode
+const replaceCourseCode = (element, courseCode, year) =>
+  (element.innerHTML = syllabiAnchorElement(courseCode, year).outerHTML)
+
+const main = () => {
+    const courseCodeElement = document.querySelector(".coursecode")
+    const courseDataInfoElement =
+      document.querySelector(".coursedata-info")
+    if (!courseCodeElement || !courseDataInfoElement) return
+
+  const courseCode = getCourseCode(courseCodeElement)
+  const year = getYear(courseDataInfoElement)
+  if (!isValidCourseCode(courseCode) || !year) return
+
+  replaceCourseCode(courseCodeElement, courseCode, year)
 }
 
-const getYear = () => {
-    return document.getElementsByClassName('coursedata-info')[0].innerText.split(' ')[0]
-}
-
-const isValidCourseCode = (courseCode) => {
-    return /[A-Z0-9]{7,}/.test(courseCode)
-}
-
-const replaceCourseCode = (element, courseCode, year) => {
-    const url = `https://kdb.tsukuba.ac.jp/syllabi/${year}/${courseCode}/jpn`
-    aTag = `<a href="${url}" target="_blank">` + courseCode + "</a>"
-    element.innerHTML = aTag
-}
-
-const element = getCourseCodeElement()
-const courseCode = getCourseCode(element)
-const year = getYear()
-
-if (courseCode !== null) {
-    replaceCourseCode(element, courseCode, year)
-}
+main()
