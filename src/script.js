@@ -28,10 +28,10 @@ const replaceCourseCode = (element, courseCode, year, lang) =>
   (element.innerHTML = syllabiAnchorElement(courseCode, year, lang).outerHTML)
 
 const main = () => {
-    const courseCodeElement = document.querySelector(".coursecode")
-    const courseDataInfoElement =
-      document.querySelector(".coursedata-info")
-    if (!courseCodeElement || !courseDataInfoElement) return
+  const courseCodeElement = document.querySelector(".coursecode")
+  const courseDataInfoElement =
+    document.querySelector(".coursedata-info")
+  if (!courseCodeElement || !courseDataInfoElement) return
 
   const lang = "jpn" // TODO: getLanguage()
   const courseCode = getCourseCode(courseCodeElement)
